@@ -113,7 +113,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             Statement operacao = conexao.createStatement();
             operacao.executeUpdate("INSERT INTO visitante(nome, idade, entrada) VALUES('"
                  + txtNome.getText() + "','"
-                 + txtIdade.getText() + "','"
+                 + Integer.parseInt(txtIdade.getText()) + "','"
                  + dateFormat.format(date) + "')");
          txtNome.setText("");
          txtIdade.setText("");
