@@ -24,6 +24,7 @@ public class VisitanteTableModel extends AbstractTableModel{
     @Override
     public int getRowCount() {
         if (visitantes != null) {
+            atualizaDados();
          return visitantes.size();
       } else {
          atualizaDados();
@@ -34,7 +35,9 @@ public class VisitanteTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
+        atualizaDados();
         return 3;
+        
     }
 
     @Override
@@ -68,8 +71,7 @@ public class VisitanteTableModel extends AbstractTableModel{
 
 }
     
-    
-    private void atualizaDados() {
+    public void atualizaDados() {
       visitantes = new ArrayList<>();
       try {
           Statement operacao = conexao.createStatement();

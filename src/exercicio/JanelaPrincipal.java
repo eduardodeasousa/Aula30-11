@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 
 public class JanelaPrincipal extends javax.swing.JFrame {
 
@@ -108,17 +109,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
             Statement operacao = conexao.createStatement();
             operacao.executeUpdate("INSERT INTO visitante(nome, idade, entrada) VALUES('"
-                 + txtNome.getText() + "','"
-                 + Integer.parseInt(txtIdade.getText()) + "','"
-                 + dateFormat.format(date) + "')");
+                 + txtNome.getText() + "',"
+                 + Integer.parseInt(txtIdade.getText()) + "," +
+                   "CURRENT_TIMESTAMP)");
          txtNome.setText("");
          txtIdade.setText("");
          jTable1.updateUI();
+     
+        
          txtNome.requestFocus();
+         
+        
       } catch (SQLException ex) {
          JOptionPane.showMessageDialog(this, "Erro salvar os dados", "Erro na inserção!", JOptionPane.ERROR_MESSAGE);
          Logger.getLogger(JanelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
